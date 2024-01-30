@@ -30,10 +30,14 @@ export default function Navigation() {
             </button>
           </div>
           <div className="flex items-center md:flex">
-            <a className="ml-5">Logo</a>
-            <h3 className="ml-5 font-sans hidden sm:block hover:text-sky-600 hover:shadow-sm text-neutral-700 cursor-pointer font-neutral-700 font-bold text-xl">
-              Departamento de Sanidad Animal
-            </h3>
+            <div className="cursor-pointer" onClick={() => navigate("/home")}>
+              <img src="/image/logo.png" alt="Logo" className="w-8 h-auto" />
+            </div>
+            <div onClick={() => navigate("/home")}>
+              <h3 className="ml-5 font-sans hidden sm:block hover:text-sky-600 hover:shadow-sm text-neutral-700 cursor-pointer font-neutral-700 font-bold text-xl">
+                Departamento de Sanidad Animal
+              </h3>
+            </div>
           </div>
 
           <div className="flex mr-5 ">
@@ -51,7 +55,7 @@ export default function Navigation() {
         className={`fixed top-16 bottom-0 left-0 right-auto  ${expanded ? "hidden" : "sm:flex"} sm:flex`}
       >
         <nav className="h-screen flex flex-col bg-neutral-100 border-r shadow-sm w-44 gap-0.5">
-          <div className="mt-5">
+          <div className="mt-3">
             <div
               className="pl-6  flex py-2 transition-colors hover:bg-sky-600 text-neutral-700 hover:text-neutral-100 items-center justify-start cursor-pointer"
               onClick={() => navigate("/home")}

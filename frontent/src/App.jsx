@@ -3,7 +3,10 @@ import TaskPage from "./components/Task";
 import TaskForm from "./components/TaskForm";
 import Tabla from "./components/Tabla";
 import TablaComp from "./components/TablaComponent";
+
+//Estadisticas
 import Estadisticas from "./pages/Estadisticas";
+import EstadisticasBayamo from "./pages/";
 
 import { Toaster } from "react-hot-toast";
 
