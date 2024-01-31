@@ -9,6 +9,7 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 import Table from "react-bootstrap/Table";
+
 export default function GestionarProvincia() {
   const [myTable, setMyTable] = useState([]);
   const navigate = useNavigate();
@@ -95,13 +96,12 @@ export default function GestionarProvincia() {
           </div>
 
           <div className="mt-3">
-            <table className="w-full ">
-              <thead className=" text-center">
-                <tr className="text-left bg-neutral-700 text-white">
+            <Table responsive striped bordered hover>
+              <thead>
+                <tr>
                   {columns.map((column) => (
-                    <th key={`column${column.field}`} className="pl-6 ">
+                    <th key={`column${column.field}`}>
                       <button
-                        className="flex items-center"
                         onClick={() => {
                           if (sortColumn === column.field) {
                             if (sortOrder === "asc") {
@@ -126,14 +126,14 @@ export default function GestionarProvincia() {
                       </button>
                     </th>
                   ))}
-                  <th className="pl-3">Editar</th>
+                  <th>Editar</th>
                 </tr>
               </thead>
               <tbody className=" text-center">
                 {results.map((dataRow, index) => (
                   <tr key={`data${index}`} className="border text-left pb-2">
                     {columns.map((column) => (
-                      <td key={column.field} className="pt-2 pb-2 pl-6">
+                      <td key={column.field} className="pt-2 pb-2">
                         {dataRow[column.field]}
                       </td>
                     ))}
@@ -145,14 +145,14 @@ export default function GestionarProvincia() {
                           )
                         }
                       >
-                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-6" />
+                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-2" />
                       </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
               <tfoot></tfoot>
-            </table>
+            </Table>
             <div className="flex items-center justify-between mt-3 mb-2">
               <div>
                 <select

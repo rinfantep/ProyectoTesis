@@ -23,14 +23,20 @@ export default function Bayamo() {
   const [propietarios, setPropietarios] = useState([]);
   const [especies, setEspecies] = useState([]);
 
-  //Especies
+  //Animales
   useEffect(() => {
     async function fetchTable() {
-      const { data } = await getAllEspecies();
-      setEspecies(data);
+      const { data } = await getAllAnimales();
+      setAnimales(data);
     }
     fetchTable();
   }, []);
+
+  const filtroBayamo = animales
+    .filter((person) => person.municipio == "Bayamo")
+    .map((filterAnimal) => filterAnimal.cantidad);
+
+  const sumaAnimales = filtroBayamo.reduce((prev, next) => prev + next, 0);
 
   //Propietarios
   useEffect(() => {
@@ -45,19 +51,10 @@ export default function Bayamo() {
     .filter((person) => person.municipio == "Bayamo")
     .map((filterPropietario) => filterPropietario.propietarios);
 
-  useEffect(() => {
-    async function fetchTable() {
-      const { data } = await getAllAnimales();
-      setAnimales(data);
-    }
-    fetchTable();
-  }, []);
-
-  const filtroBayamo = animales
+  //Especies
+  const filtroEspecies = animales
     .filter((person) => person.municipio == "Bayamo")
-    .map((filterAnimal) => filterAnimal.cantidad);
-
-  const sumaAnimales = filtroBayamo.reduce((prev, next) => prev + next, 0);
+    .map((filterAnimal) => filterAnimal.especie);
 
   //Chart
   var data = {
@@ -76,7 +73,7 @@ export default function Bayamo() {
         data: [
           sumaAnimales,
           filtroPropietario.length,
-          especies.length,
+          filtroEspecies.length,
           5,
           2,
           3,
@@ -140,7 +137,7 @@ export default function Bayamo() {
             />
             <CardEstadisticas
               nombre="Especies"
-              cantidad={especies.length}
+              cantidad={filtroEspecies.length}
               color="bg-yellow-500"
             />
             <CardEstadisticas nombre="Animales" cantidad="456" />

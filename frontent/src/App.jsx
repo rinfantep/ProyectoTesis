@@ -5,8 +5,9 @@ import Tabla from "./components/Tabla";
 import TablaComp from "./components/TablaComponent";
 
 //Estadisticas
-import Estadisticas from "./pages/Estadisticas";
-import EstadisticasBayamo from "./pages/";
+import Estadisticas from "./pages/Estadistica";
+import EstadisticasBayamo from "./pages/Estadisticas/EstadisticasBayamo";
+import EstadisticasYara from "./pages/Estadisticas/EstadisticasYara";
 
 import { Toaster } from "react-hot-toast";
 
@@ -48,6 +49,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/municipio" element={<Municipio />} />
           <Route path="/estadisticas" element={<Estadisticas />} />
+          <Route path="/estadisticasBayamo" element={<EstadisticasBayamo />} />
+          <Route path="/estadisticasYara" element={<EstadisticasYara />} />
 
           <Route path="/gestionar" element={<Gestionar />} />
           <Route path="/gestionarProvincia" element={<GestionarProvincia />} />

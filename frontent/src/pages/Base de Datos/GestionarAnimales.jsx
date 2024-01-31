@@ -175,7 +175,7 @@ export default function GestionarAnimales() {
                           navigate(`/gestionarAnimalesForm/${dataRow.id}`)
                         }
                       >
-                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-6" />
+                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-2" />
                       </button>
                     </td>
                   </tr>

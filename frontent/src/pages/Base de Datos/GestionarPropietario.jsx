@@ -9,6 +9,8 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 
+import Table from "react-bootstrap/Table";
+
 export default function GestionarPropietario() {
   const [myTable, setMyTable] = useState([]);
   const navigate = useNavigate();
@@ -106,11 +108,11 @@ export default function GestionarPropietario() {
           </div>
 
           <div className="mt-3">
-            <table className="w-full ">
-              <thead className=" text-center">
-                <tr className="text-left bg-neutral-700 text-white">
+            <Table responsive striped bordered hover>
+              <thead>
+                <tr>
                   {columns.map((column) => (
-                    <th key={`column${column.field}`} className="pl-6 ">
+                    <th key={`column${column.field}`}>
                       <button
                         className="flex items-center"
                         onClick={() => {
@@ -156,14 +158,14 @@ export default function GestionarPropietario() {
                           )
                         }
                       >
-                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-6" />
+                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-2" />
                       </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
               <tfoot></tfoot>
-            </table>
+            </Table>
             <div className="flex items-center justify-between mt-3 mb-2">
               <div>
                 <select
