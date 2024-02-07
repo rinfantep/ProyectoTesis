@@ -64,7 +64,7 @@ export default function GestionarProvincia() {
   const columns = [
     {
       title: "Provincia",
-      field: "provincias",
+      field: "provincia",
     },
   ];
 

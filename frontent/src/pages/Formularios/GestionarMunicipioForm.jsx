@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -7,9 +7,21 @@ import {
   getMunicipio,
   deleteMunicipio,
 } from "../../api/municipio.api";
+import { getAllProvincia } from "../../api/provincia.api";
 import Navigation from "../../components/Navigation";
 
 export default function GestionarMunicipioForm() {
+  //select
+  const [provincia, setProvincia] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllProvincia();
+      setProvincia(data);
+    }
+    fetchTable();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -34,7 +46,6 @@ export default function GestionarMunicipioForm() {
       if (params.id) {
         const { data } = await getMunicipio(params.id);
         setValue("municipios", data.municipios);
-        setValue("provincias", data.provincias);
       }
     }
     loadMunicipio();
@@ -61,19 +72,6 @@ export default function GestionarMunicipioForm() {
                 {...register("municipios", { required: true })}
               />
               {errors.municipios && <span>Introduzca un municipio</span>}
-            </div>
-
-            <div className="text-gray-700 grid">
-              <label htmlFor="provincia" className="mb-2">
-                Provincia
-              </label>
-              <input
-                className="form-control border-gray-300 rounded-lg sm:w-96"
-                type="text"
-                id="provincia"
-                {...register("provincias", { required: true })}
-              />
-              {errors.provincias && <span>Introduzca una provincia</span>}
             </div>
 
             <div className="flex justify-between mt-4 ">

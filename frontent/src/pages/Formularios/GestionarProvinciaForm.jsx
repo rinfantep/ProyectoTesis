@@ -33,7 +33,7 @@ export default function GestionarProvinciaForm() {
     async function loadProvincia() {
       if (params.id) {
         const { data } = await getProvincia(params.id);
-        setValue("provincias", data.provincias);
+        setValue("provincia", data.provincia);
       }
     }
     loadProvincia();
@@ -57,9 +57,9 @@ export default function GestionarProvinciaForm() {
                 className="form-control border-gray-300 rounded-lg sm:w-96"
                 type="text"
                 id="provincia"
-                {...register("provincias", { required: true })}
+                {...register("provincia", { required: true })}
               />
-              {errors.provincias && <span>Introduzca una provincia</span>}
+              {errors.provincia && <span>Introduzca una provincia</span>}
             </div>
 
             <div className="flex justify-between mt-4 ">

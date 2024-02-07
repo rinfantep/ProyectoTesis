@@ -9,17 +9,33 @@ import {
   getAllNotiDiarias,
 } from "../../api/notiDiarias.api";
 import Navigation from "../../components/Navigation";
+import { getAllMunicipio } from "../../api/municipio.api";
+import { getAllPropietarios } from "../../api/propietarios.api";
 
 export default function MunicipioForm() {
-  const [myMunicipio, setMyMunicipio] = useState([]);
+  //select Municipio
+  const [municipio, setMunicipio] = useState([]);
 
   useEffect(() => {
     async function fetchTable() {
-      const { data } = await getAllNotiDiarias();
-      myMunicipio(data);
+      const { data } = await getAllMunicipio();
+      setMunicipio(data);
     }
     fetchTable();
   }, []);
+  //fin select municipio
+
+  //select Propietario
+  const [propietario, setPropietario] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllPropietarios();
+      setPropietario(data);
+    }
+    fetchTable();
+  }, []);
+  //fin select propietario
 
   const {
     register,
@@ -255,12 +271,18 @@ export default function MunicipioForm() {
               <label htmlFor="municipio" className="mb-2">
                 Municipio
               </label>
-              <input
-                className=" border-gray-300 rounded-lg w-32 sm:w-60"
-                type="text"
+              <select
+                className="form-control border-gray-300 rounded-lg sm:w-96"
                 id="municipio"
                 {...register("municipio", { required: true })}
-              />
+              >
+                <option value="">-------</option>
+                {municipio.map((muni) => (
+                  <option key={muni.municipio} value={muni.municipio}>
+                    {muni.municipio}
+                  </option>
+                ))}
+              </select>
               {errors.municipio && <span>Introduzca un municipio</span>}
             </div>
 
@@ -268,13 +290,19 @@ export default function MunicipioForm() {
               <label htmlFor="propietario" className="mb-2">
                 Propietario
               </label>
-              <input
-                className=" border-gray-300 rounded-lg w-32 sm:w-60"
-                type="text"
+              <select
+                className="form-control border-gray-300 rounded-lg sm:w-96"
                 id="propietario"
                 {...register("propietario", { required: true })}
-              />
-              {errors.propietario && <span>Introduzca el propietario</span>}
+              >
+                <option value="">-------</option>
+                {propietario.map((prop) => (
+                  <option key={prop.id} value={prop.propietario}>
+                    {prop.propietario}
+                  </option>
+                ))}
+              </select>
+              {errors.propietario && <span>Introduzca un propietario</span>}
             </div>
 
             <div className="flex justify-between mt-4 ">

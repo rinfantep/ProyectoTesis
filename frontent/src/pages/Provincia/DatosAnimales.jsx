@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 import Table from "react-bootstrap/Table";
+import { getAllNotiDiarias } from "../../api/notiDiarias.api";
 
 export default function GestionarAnimales() {
   const [myTable, setMyTable] = useState([]);
@@ -18,7 +19,7 @@ export default function GestionarAnimales() {
 
   useEffect(() => {
     async function fetchTable() {
-      const { data } = await getAllAnimales();
+      const { data } = await getAllNotiDiarias();
       setMyTable(data);
     }
     fetchTable();
@@ -63,10 +64,6 @@ export default function GestionarAnimales() {
 
   const columns = [
     {
-      title: "Id",
-      field: "id",
-    },
-    {
       title: "Nombre",
       field: "nombre",
     },
@@ -101,8 +98,7 @@ export default function GestionarAnimales() {
       <Navigation />
 
       <div className="sm:ml-44 mt-16 sm:mt-16">
-        <NavGestion />
-        <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 ml-4 mr-4">
+        <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 ml-4 mr-4 mt-20">
           <div className="flex justify-between items-center">
             <strong className="text-gray-700 from-neutral-900 text-xs md:text-lg">
               Animales
@@ -125,10 +121,10 @@ export default function GestionarAnimales() {
 
           <div className="mt-3">
             <Table responsive striped bordered>
-              <thead className=" text-center">
-                <tr className="text-left bg-neutral-700 text-white text-base">
+              <thead>
+                <tr>
                   {columns.map((column) => (
-                    <th key={`column${column.field}`} className="pl-6 ">
+                    <th key={`column${column.field}`}>
                       <button
                         className="flex items-center"
                         onClick={() => {
@@ -159,27 +155,17 @@ export default function GestionarAnimales() {
                 </tr>
               </thead>
               <tbody className=" text-center">
-                {results.map((dataRow, index) => (
-                  <tr
-                    key={`data${index}`}
-                    className="border text-left pb-2 text-base"
-                  >
-                    {columns.map((column) => (
-                      <td key={column.field} className="pt-2 pb-2 pl-6">
-                        {dataRow[column.field]}
-                      </td>
-                    ))}
-                    <td className="">
-                      <button
-                        onClick={() =>
-                          navigate(`/gestionarAnimalesForm/${dataRow.id}`)
-                        }
-                      >
-                        <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-2" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                <tr className="border text-left pb-2 text-base">
+                  <td className="">
+                    <button
+                      onClick={() =>
+                        navigate(`/gestionarAnimalesForm/${dataRow.id}`)
+                      }
+                    >
+                      <PencilSquareIcon className="h-6 w-6 hover:text-sky-500 ml-2" />
+                    </button>
+                  </td>
+                </tr>
               </tbody>
               <tfoot></tfoot>
             </Table>

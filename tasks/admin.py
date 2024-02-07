@@ -19,7 +19,7 @@ admin.site.register(Traslados)
 admin.site.register(Enfermedades)
 admin.site.register(FuentesCalculos)
 admin.site.register(NotiDiaria)
-admin.site.register(Animales)
+
 
 
 

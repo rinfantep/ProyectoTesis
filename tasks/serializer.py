@@ -91,7 +91,4 @@ class NotiDiariaSerializer(serializers.ModelSerializer):
         model = NotiDiaria
         fields = '__all__'
 
-class AnimalesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Animales
-        fields = '__all__'
+

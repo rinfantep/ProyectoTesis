@@ -66,11 +66,7 @@ export default function GestionarMunicipio() {
   const columns = [
     {
       title: "Municipio",
-      field: "municipios",
-    },
-    {
-      title: "Provincia",
-      field: "provincias",
+      field: "municipio",
     },
   ];
 
@@ -106,32 +102,7 @@ export default function GestionarMunicipio() {
               <thead>
                 <tr>
                   {columns.map((column) => (
-                    <th key={`column${column.field}`}>
-                      <button
-                        className="flex items-center"
-                        onClick={() => {
-                          if (sortColumn === column.field) {
-                            if (sortOrder === "asc") {
-                              setSortOrder("desc");
-                            } else {
-                              setSortOrder("asc");
-                            }
-                          } else {
-                            setSortColumn(column.field);
-                            setSortOrder("asc");
-                          }
-                        }}
-                      >
-                        {column.title}
-                        {sortColumn === column.field ? (
-                          sortOrder === "asc" ? (
-                            <ArrowLongDownIcon className="h-4 w-6" />
-                          ) : (
-                            <ArrowLongUpIcon className="h-4 w-6" />
-                          )
-                        ) : null}
-                      </button>
-                    </th>
+                    <th key={`column${column.field}`}>{column.title}</th>
                   ))}
                   <th className="pl-3">Editar</th>
                 </tr>
@@ -148,7 +119,7 @@ export default function GestionarMunicipio() {
                       <button
                         onClick={() =>
                           navigate(
-                            `/gestionarMunicipioForm/${dataRow.municipios}`
+                            `/gestionarMunicipioForm/${dataRow.municipio}`
                           )
                         }
                       >

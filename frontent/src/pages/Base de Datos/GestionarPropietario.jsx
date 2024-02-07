@@ -68,7 +68,7 @@ export default function GestionarPropietario() {
     },
     {
       title: "Sector",
-      field: "sectores",
+      field: "sector",
     },
     {
       title: "Municipio",
@@ -76,7 +76,7 @@ export default function GestionarPropietario() {
     },
     {
       title: "Provincia",
-      field: "provincias",
+      field: "provincia",
     },
   ];
 

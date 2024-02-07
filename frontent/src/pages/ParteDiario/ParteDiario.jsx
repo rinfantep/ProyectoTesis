@@ -11,7 +11,7 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/solid";
 
-export default function Municipio() {
+export default function ParteDiario() {
   const [myTable, setMyTable] = useState([]);
   const navigate = useNavigate();
   const params = useParams();

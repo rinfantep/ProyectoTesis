@@ -84,6 +84,14 @@ export default function Navigation() {
 
             <div
               className="pl-6 mt-2 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
+              onClick={() => navigate("/datosAnimales")}
+            >
+              <DocumentIcon className="h-6 w-6 " />
+              <span className="ml-4  ">Datos</span>
+            </div>
+
+            <div
+              className="pl-6 mt-2 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
               onClick={() => navigate("/estadisticas")}
             >
               <ChartBarIcon className="h-6 w-6 " />

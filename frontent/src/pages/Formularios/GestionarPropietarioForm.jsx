@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -7,9 +7,46 @@ import {
   getPropietario,
   deletePropietario,
 } from "../../api/propietarios.api";
+import { getAllSectores } from "../../api/sectores.api";
+import { getAllMunicipio } from "../../api/municipio.api";
+import { getAllProvincia } from "../../api/provincia.api";
 import Navigation from "../../components/Navigation";
 
 export default function GestionarPropietarioForm() {
+  //select sectores
+  const [sector, setSector] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllSectores();
+      setSector(data);
+    }
+    fetchTable();
+  }, []);
+
+  //select Municipio
+  const [municipio, setMunicipio] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllMunicipio();
+      setMunicipio(data);
+    }
+    fetchTable();
+  }, []);
+  //fin select municipio
+
+  //select Provincia
+  const [provincia, setProvincia] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllProvincia();
+      setProvincia(data);
+    }
+    fetchTable();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -34,9 +71,9 @@ export default function GestionarPropietarioForm() {
       if (params.id) {
         const { data } = await getPropietario(params.id);
         setValue("propietarios", data.propietarios);
-        setValue("sectores", data.sectores);
+        setValue("sector", data.sector);
         setValue("municipio", data.municipio);
-        setValue("provincias", data.provincias);
+        setValue("provincia", data.provincia);
       }
     }
     loadPropietario();
@@ -59,35 +96,47 @@ export default function GestionarPropietarioForm() {
               <input
                 className="form-control border-gray-300 rounded-lg sm:w-96"
                 type="text"
-                id="provincia"
+                id="propietario"
                 {...register("propietarios", { required: true })}
               />
               {errors.propietarios && <span>Introduzca un propietario</span>}
             </div>
 
             <div className="text-gray-700 grid">
-              <label htmlFor="sectores" className="mb-2">
+              <label htmlFor="sector" className="mb-2">
                 Sector
               </label>
-              <input
+              <select
                 className="form-control border-gray-300 rounded-lg sm:w-96"
-                type="text"
-                id="sectores"
-                {...register("sectores", { required: true })}
-              />
-              {errors.sectores && <span>Introduzca un sector</span>}
+                id="sector"
+                {...register("sector", { required: true })}
+              >
+                <option value="">-------</option>
+                {sector.map((sect) => (
+                  <option key={sect.sector} value={sect.sector}>
+                    {sect.sector}
+                  </option>
+                ))}
+              </select>
+              {errors.sector && <span>Introduzca un sector</span>}
             </div>
 
             <div className="text-gray-700 grid">
               <label htmlFor="municipio" className="mb-2">
                 Municipio
               </label>
-              <input
+              <select
                 className="form-control border-gray-300 rounded-lg sm:w-96"
-                type="text"
                 id="municipio"
                 {...register("municipio", { required: true })}
-              />
+              >
+                <option value="">-------</option>
+                {municipio.map((muni) => (
+                  <option key={muni.municipio} value={muni.municipio}>
+                    {muni.municipio}
+                  </option>
+                ))}
+              </select>
               {errors.municipio && <span>Introduzca un municipio</span>}
             </div>
 
@@ -95,13 +144,19 @@ export default function GestionarPropietarioForm() {
               <label htmlFor="provincia" className="mb-2">
                 Provincia
               </label>
-              <input
+              <select
                 className="form-control border-gray-300 rounded-lg sm:w-96"
-                type="text"
                 id="provincia"
-                {...register("provincias", { required: true })}
-              />
-              {errors.provincias && <span>Introduzca una provincia</span>}
+                {...register("provincia", { required: true })}
+              >
+                <option value="">-------</option>
+                {provincia.map((prov) => (
+                  <option key={prov.provincia} value={prov.provincia}>
+                    {prov.provincia}
+                  </option>
+                ))}
+              </select>
+              {errors.provincia && <span>Introduzca un provincia</span>}
             </div>
 
             <div className="flex justify-between mt-4 ">
@@ -127,3 +182,30 @@ export default function GestionarPropietarioForm() {
     </>
   );
 }
+
+/*<div className="text-gray-700 grid">
+    <label htmlFor="sectores" className="mb-2">
+      Sector
+    </label>
+    <input
+      className="form-control border-gray-300 rounded-lg sm:w-96"
+      type="text"
+      id="sectores"
+      {...register("sectores", { required: true })}
+    />
+    {errors.sectores && <span>Introduzca un sector</span>}
+  </div>
+
+  <div className="text-gray-700 grid">
+              <label htmlFor="municipio" className="mb-2">
+                Municipio
+              </label>
+              <input
+                className="form-control border-gray-300 rounded-lg sm:w-96"
+                type="text"
+                id="municipio"
+                {...register("municipio", { required: true })}
+              />
+              {errors.municipio && <span>Introduzca un municipio</span>}
+            </div>
+  */

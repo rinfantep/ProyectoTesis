@@ -4,6 +4,8 @@ import TaskForm from "./components/TaskForm";
 import Tabla from "./components/Tabla";
 import TablaComp from "./components/TablaComponent";
 
+import DatosAnimales from "./pages/Provincia/DatosAnimales";
+
 //Estadisticas
 import Estadisticas from "./pages/Estadistica";
 import EstadisticasBayamo from "./pages/Estadisticas/EstadisticasBayamo";
@@ -11,10 +13,10 @@ import EstadisticasYara from "./pages/Estadisticas/EstadisticasYara";
 
 import { Toaster } from "react-hot-toast";
 
-//Page kl
+//Page Gestion
 import Mapa from "./pages/Mapa";
 import Home from "./pages/Home";
-import Municipio from "./pages/Base de Datos/Municipio";
+import Municipio from "./pages/ParteDiario/ParteDiario";
 import Gestionar from "./pages/Gestionar";
 import GestionarProvincia from "./pages/Base de Datos/GestionarProvincia";
 import GestionarMunicipio from "./pages/Base de Datos/GestionarMunicipio";
@@ -23,7 +25,6 @@ import GestionarTipoSector from "./pages/Base de Datos/GestionarTipoSector";
 import GestionarPropietario from "./pages/Base de Datos/GestionarPropietario";
 import GestionarEspecie from "./pages/Base de Datos/GestionarEspecie";
 import GestionarEnfermedades from "./pages/Base de Datos/GestionarEnfermedades";
-import GestionarAnimales from "./pages/Base de Datos/GestionarAnimales";
 
 //Form
 import GestionarProvinciaForm from "./pages/Formularios/GestionarProvinciaForm";
@@ -34,7 +35,7 @@ import GestionarTipoSectorForm from "./pages/Formularios/GestionarTipoSectorForm
 import GestionarEspecieForm from "./pages/Formularios/GestionarEspecieForm";
 import GestionarEnfermedadForm from "./pages/Formularios/GestionarEnfermedadForm";
 import GestionarAnimalesForm from "./pages/Formularios/GestionarAnimalesForm";
-import MunicipioForm from "./pages/Formularios/MunicipioForm";
+import MunicipioForm from "./pages/Formularios/ParteDiarioForm";
 
 //Icons
 import { SunIcon } from "@heroicons/react/24/solid";
@@ -48,6 +49,9 @@ function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/municipio" element={<Municipio />} />
+
+          <Route path="/datosAnimales" element={<DatosAnimales />} />
+
           <Route path="/estadisticas" element={<Estadisticas />} />
           <Route path="/estadisticasBayamo" element={<EstadisticasBayamo />} />
           <Route path="/estadisticasYara" element={<EstadisticasYara />} />
@@ -72,8 +76,6 @@ function App() {
             path="/gestionarEnfermedades"
             element={<GestionarEnfermedades />}
           />
-
-          <Route path="/gestionarAnimales" element={<GestionarAnimales />} />
 
           <Route
             path="/gestionarProvinciaForm"

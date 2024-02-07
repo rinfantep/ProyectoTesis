@@ -5,38 +5,17 @@ from django.db import models
 
 class Provincias(models.Model):
     
-    provincias = models.CharField(max_length=20, primary_key=True)
+    provincia = models.CharField(max_length=20, primary_key=True)
 
     def __str__(self):
         return self.provincias
     
-
 class Municipios(models.Model):
-    municipios = models.CharField(max_length=20,primary_key=True)
-    provincias =  models.ForeignKey('Provincias', on_delete=models.CASCADE)
-   
-
+    municipio = models.CharField(max_length=20,primary_key=True)
     
     def __str__(self):
         return self.municipios
-
-class Mapas(models.Model):
-    mapas = models.CharField( max_length=20)
-    provincias = models.ForeignKey('Provincias',on_delete=models.CASCADE, db_column='provincias')
-
-    def __str__(self):
-        return self.mapas
     
-
-class Propietarios(models.Model):
-    propietarios = models.CharField( max_length=20, primary_key=True)
-    sectores = models.ForeignKey('Sectores',on_delete=models.CASCADE)
-    municipio = models.ForeignKey('Municipios',on_delete=models.CASCADE)
-    provincias = models.ForeignKey('Provincias',on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.propietarios
-
 class Sectores(models.Model):
     sector = models.CharField( max_length=20, primary_key=True)
 
@@ -45,11 +24,12 @@ class Sectores(models.Model):
 
 class TipoSectores(models.Model):
     tipoSector = models.CharField( max_length=20, primary_key=True)
-    sector = models.ForeignKey('Sectores',on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.tipoSector
-
+    
+    
 class Especies(models.Model):
     codigo = models.PositiveIntegerField()
     especies = models.CharField(max_length=20, primary_key=True)
@@ -65,20 +45,16 @@ class Enfermedades(models.Model):
         return self.enfermedad
     
 
-    
-class Animales(models.Model):
-    nombre = models.CharField(max_length=50)
-    especie = models.ForeignKey("Especies", on_delete=models.CASCADE,db_column='especies')
-    cantidad = models.IntegerField()
-    fecha = models.DateField(auto_now_add=True)
-    sector = models.ForeignKey("Sectores", on_delete=models.CASCADE, db_column='sectores')
-    tipoSector = models.ForeignKey("TipoSectores", on_delete=models.CASCADE, db_column='tipoSector')
-    municipio = models.ForeignKey("Municipios", on_delete=models.CASCADE, db_column='municipios')
-    propietario = models.ForeignKey('Propietarios', db_column='propietario', on_delete=models.CASCADE)
-    provincia = models.ForeignKey("Provincias", on_delete=models.CASCADE, db_column='provincias')
+
+class Propietarios(models.Model):
+    propietario = models.CharField( max_length=20, primary_key=True)
+    sector = models.ForeignKey('Sectores',on_delete=models.CASCADE)
+    municipio = models.ForeignKey('Municipios',on_delete=models.CASCADE)
+    provincia = models.ForeignKey('Provincias',on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nombre
+        return self.propietarios
+    
 
 class NotiDiaria(models.Model):
     fecha = models.DateField(auto_now=True)
@@ -97,6 +73,18 @@ class NotiDiaria(models.Model):
     fecha_confeccion = models.DateField(auto_now=False, auto_now_add=False)
     fecha_cierre = models.DateField(auto_now=False, auto_now_add=False)
     parte = models.TextField()
+    
+
+
+
+
+
+class Mapas(models.Model):
+    mapas = models.CharField( max_length=20)
+    provincias = models.ForeignKey('Provincias',on_delete=models.CASCADE, db_column='provincias')
+
+    def __str__(self):
+        return self.mapas
 
 
 class Cuadrantes(models.Model):
