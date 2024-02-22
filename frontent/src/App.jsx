@@ -16,7 +16,6 @@ import { Toaster } from "react-hot-toast";
 //Page Gestion
 import Mapa from "./pages/Mapa";
 import Home from "./pages/Home";
-import Municipio from "./pages/ParteDiario/ParteDiario";
 import Gestionar from "./pages/Gestionar";
 import GestionarProvincia from "./pages/Base de Datos/GestionarProvincia";
 import GestionarMunicipio from "./pages/Base de Datos/GestionarMunicipio";
@@ -26,6 +25,9 @@ import GestionarPropietario from "./pages/Base de Datos/GestionarPropietario";
 import GestionarEspecie from "./pages/Base de Datos/GestionarEspecie";
 import GestionarEnfermedades from "./pages/Base de Datos/GestionarEnfermedades";
 
+import ParteDiario from "./pages/Tablas/ParteDiario";
+import Seguimientos from "./pages/Tablas/Seguimientos";
+
 //Form
 import GestionarProvinciaForm from "./pages/Formularios/GestionarProvinciaForm";
 import GestionarPropietarioForm from "./pages/Formularios/GestionarPropietarioForm";
@@ -34,8 +36,9 @@ import GestionarSectorForm from "./pages/Formularios/GestionarSectorForm";
 import GestionarTipoSectorForm from "./pages/Formularios/GestionarTipoSectorForm";
 import GestionarEspecieForm from "./pages/Formularios/GestionarEspecieForm";
 import GestionarEnfermedadForm from "./pages/Formularios/GestionarEnfermedadForm";
-import GestionarAnimalesForm from "./pages/Formularios/GestionarAnimalesForm";
-import MunicipioForm from "./pages/Formularios/ParteDiarioForm";
+
+import ParteDiarioForm from "./pages/Formularios/ParteDiarioForm";
+import SeguimientosForm from "./pages/Formularios/SeguimientosForm";
 
 //Icons
 import { SunIcon } from "@heroicons/react/24/solid";
@@ -48,7 +51,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/municipio" element={<Municipio />} />
+          <Route path="/parteDiario" element={<ParteDiario />} />
+          <Route path="/seguimientos" element={<Seguimientos />} />
 
           <Route path="/datosAnimales" element={<DatosAnimales />} />
 
@@ -140,17 +144,11 @@ function App() {
             element={<GestionarEnfermedadForm />}
           />
 
-          <Route
-            path="/gestionarAnimalesForm"
-            element={<GestionarAnimalesForm />}
-          />
-          <Route
-            path="/gestionarAnimalesForm/:id"
-            element={<GestionarAnimalesForm />}
-          />
+          <Route path="/parteDiarioForm" element={<ParteDiarioForm />} />
+          <Route path="/parteDiarioForm/:id" element={<ParteDiarioForm />} />
 
-          <Route path="/municipioForm" element={<MunicipioForm />} />
-          <Route path="/municipioForm/:id" element={<MunicipioForm />} />
+          <Route path="/seguimientosForm" element={<SeguimientosForm />} />
+          <Route path="/seguimientosForm/:id" element={<SeguimientosForm />} />
 
           <Route path="/mapa" element={<Mapa />} />
           <Route path="/tasks" element={<TaskPage />} />

@@ -97,7 +97,7 @@ export default function GestionarPropietarioForm() {
                 className="form-control border-gray-300 rounded-lg sm:w-96"
                 type="text"
                 id="propietario"
-                {...register("propietarios", { required: true })}
+                {...register("propietario", { required: true })}
               />
               {errors.propietarios && <span>Introduzca un propietario</span>}
             </div>

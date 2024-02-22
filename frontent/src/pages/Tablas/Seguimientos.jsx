@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
-import { getAllNotiDiarias } from "../../api/notiDiarias.api";
+import { getAllSeguimientos } from "../../api/seguimientos.api";
 import {
   PencilSquareIcon,
   ChevronLeftIcon,
@@ -18,7 +18,7 @@ export default function ParteDiario() {
 
   useEffect(() => {
     async function fetchTable() {
-      const { data } = await getAllNotiDiarias();
+      const { data } = await getAllSeguimientos();
       setMyTable(data);
     }
     fetchTable();
@@ -66,33 +66,10 @@ export default function ParteDiario() {
       title: "ID",
       field: "id",
     },
-    {
-      title: "Fecha",
-      field: "fecha",
-    },
+
     {
       title: "No. Orden",
-      field: "No_orden",
-    },
-    {
-      title: "Unidad",
-      field: "unidad",
-    },
-    {
-      title: "Cuadrante",
-      field: "cuadrante",
-    },
-    {
-      title: "Codigo entidad",
-      field: "codigo_entidad",
-    },
-    {
-      title: "Codigo especialista",
-      field: "codigo_especialista",
-    },
-    {
-      title: "Poblacion",
-      field: "poblacion",
+      field: "numOrden",
     },
     {
       title: "Enfermos",
@@ -103,32 +80,20 @@ export default function ParteDiario() {
       field: "muertos",
     },
     {
-      title: "Sac",
-      field: "sac",
+      title: "Sacrificados",
+      field: "sacrificados",
     },
     {
-      title: "Fecha envio",
-      field: "fecha_envio",
+      title: "Recuperados",
+      field: "recuperados",
     },
     {
-      title: "Fecha confeccion",
-      field: "fecha_confeccion",
+      title: "Observaciones",
+      field: "observaciones",
     },
     {
-      title: "Fecha cierre",
-      field: "fecha_cierre",
-    },
-    {
-      title: "Parte",
-      field: "parte",
-    },
-    {
-      title: "Municipio",
-      field: "municipio",
-    },
-    {
-      title: "Propietario",
-      field: "propietario",
+      title: "Provincia",
+      field: "provincia",
     },
   ];
   return (
@@ -139,7 +104,7 @@ export default function ParteDiario() {
         <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 ml-4  mt-20">
           <div className="flex justify-between items-center">
             <strong className="text-gray-700 from-neutral-900 text-xs md:text-lg">
-              Parte diario
+              Seguimientos
             </strong>
             <input
               type="text"
@@ -150,7 +115,7 @@ export default function ParteDiario() {
               }}
             />
             <button
-              onClick={() => navigate("/municipioForm")}
+              onClick={() => navigate("/seguimientosForm")}
               className="bg-sky-600 hover:bg-sky-700 text-white w-20 rounded-sm hover:shadow-black h-7"
             >
               Añadir
@@ -201,7 +166,9 @@ export default function ParteDiario() {
                     ))}
                     <td className="">
                       <button
-                        onClick={() => navigate(`/municipioForm/${dataRow.id}`)}
+                        onClick={() =>
+                          navigate(`/seguimientosForm/${dataRow.id}`)
+                        }
                       >
                         <PencilSquareIcon className="h-6 w-6 hover:text-sky-500" />
                       </button>

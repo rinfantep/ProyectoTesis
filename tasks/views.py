@@ -68,3 +68,7 @@ class NotiDiariaView(viewsets.ModelViewSet):
     serializer_class = NotiDiariaSerializer
     queryset = NotiDiaria.objects.all()
 
+class SeguimientosView(viewsets.ModelViewSet):
+    serializer_class = SeguimientosSerializer
+    queryset = Seguimientos.objects.all()
+

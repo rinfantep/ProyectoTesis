@@ -23,7 +23,7 @@ export default function Home() {
           <Card
             imagen="/image/grafico.jpeg"
             nave={() => {
-              navigate("/");
+              navigate("/estadisticas");
             }}
             nombre="Análisis Epizootiológico"
             descripcion="La  medición  de  la  enfermedad  puede  expresarse  en  medidas  absolutas  o relativas: las absolutas pueden ser muy valiosas para conocer la existencia de la patema en una población, pero no para conocer su importancia. Resulta   más   interesante   expresar   estas   cifras   en   términos   relativos, relacionando una cifra absoluta (como puede ser el número de brotes) con otra u otras cifras (como tamaño de la población en la que se han observado dichos sucesos)."

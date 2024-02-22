@@ -53,7 +53,7 @@ export default function MunicipioForm() {
     } else {
       await createNotiDiarias(data);
     }
-    navigate("/municipio");
+    navigate("/parteDiario");
   });
 
   useEffect(() => {
@@ -272,13 +272,13 @@ export default function MunicipioForm() {
                 Municipio
               </label>
               <select
-                className="form-control border-gray-300 rounded-lg sm:w-96"
+                className=" border-gray-300 rounded-lg sm:w-60"
                 id="municipio"
                 {...register("municipio", { required: true })}
               >
                 <option value="">-------</option>
-                {municipio.map((muni) => (
-                  <option key={muni.municipio} value={muni.municipio}>
+                {municipio.map((muni, i) => (
+                  <option key={i} value={muni.municipio}>
                     {muni.municipio}
                   </option>
                 ))}
@@ -291,13 +291,13 @@ export default function MunicipioForm() {
                 Propietario
               </label>
               <select
-                className="form-control border-gray-300 rounded-lg sm:w-96"
+                className=" border-gray-300 rounded-lg sm:w-60"
                 id="propietario"
                 {...register("propietario", { required: true })}
               >
                 <option value="">-------</option>
-                {propietario.map((prop) => (
-                  <option key={prop.id} value={prop.propietario}>
+                {propietario.map((prop, i) => (
+                  <option key={i} value={prop.propietario}>
                     {prop.propietario}
                   </option>
                 ))}
@@ -315,7 +315,7 @@ export default function MunicipioForm() {
                   onClick={async () => {
                     await deleteNotiDiarias(params.id);
 
-                    navigate("/municipio");
+                    navigate("/parteDiario");
                   }}
                 >
                   Delete

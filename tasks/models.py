@@ -8,13 +8,13 @@ class Provincias(models.Model):
     provincia = models.CharField(max_length=20, primary_key=True)
 
     def __str__(self):
-        return self.provincias
+        return self.provincia
     
 class Municipios(models.Model):
     municipio = models.CharField(max_length=20,primary_key=True)
     
     def __str__(self):
-        return self.municipios
+        return self.municipio
     
 class Sectores(models.Model):
     sector = models.CharField( max_length=20, primary_key=True)
@@ -53,15 +53,15 @@ class Propietarios(models.Model):
     provincia = models.ForeignKey('Provincias',on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.propietarios
+        return self.propietario
     
 
 class NotiDiaria(models.Model):
     fecha = models.DateField(auto_now=True)
     No_orden = models.IntegerField()
-    municipio = models.ForeignKey("Municipios", on_delete=models.CASCADE, db_column='municipios')
+    municipio = models.ForeignKey("Municipios", on_delete=models.CASCADE, db_column='municipio')
     unidad = models.CharField(max_length=50)
-    propietario = models.ForeignKey("Propietarios", on_delete=models.CASCADE, db_column='propietarios')
+    propietario = models.ForeignKey("Propietarios", on_delete=models.CASCADE, db_column='propietario')
     cuadrante = models.IntegerField()
     codigo_entidad = models.IntegerField()
     codigo_especialista = models.IntegerField()
@@ -73,7 +73,16 @@ class NotiDiaria(models.Model):
     fecha_confeccion = models.DateField(auto_now=False, auto_now_add=False)
     fecha_cierre = models.DateField(auto_now=False, auto_now_add=False)
     parte = models.TextField()
-    
+
+class Seguimientos(models.Model):
+    provincia = models.ForeignKey("Provincias", on_delete=models.CASCADE)
+    numOrden = models.IntegerField()
+    enfermos = models.IntegerField()
+    muertos = models.IntegerField()
+    sacrificados = models.IntegerField()
+    recuperados = models.IntegerField()
+    observaciones = models.TextField()
+
 
 
 
@@ -81,7 +90,7 @@ class NotiDiaria(models.Model):
 
 class Mapas(models.Model):
     mapas = models.CharField( max_length=20)
-    provincias = models.ForeignKey('Provincias',on_delete=models.CASCADE, db_column='provincias')
+    provincias = models.ForeignKey('Provincias',on_delete=models.CASCADE, db_column='provincia')
 
     def __str__(self):
         return self.mapas

@@ -7,21 +7,10 @@ import {
   getMunicipio,
   deleteMunicipio,
 } from "../../api/municipio.api";
-import { getAllProvincia } from "../../api/provincia.api";
+
 import Navigation from "../../components/Navigation";
 
 export default function GestionarMunicipioForm() {
-  //select
-  const [provincia, setProvincia] = useState([]);
-
-  useEffect(() => {
-    async function fetchTable() {
-      const { data } = await getAllProvincia();
-      setProvincia(data);
-    }
-    fetchTable();
-  }, []);
-
   const {
     register,
     handleSubmit,
@@ -45,7 +34,7 @@ export default function GestionarMunicipioForm() {
     async function loadMunicipio() {
       if (params.id) {
         const { data } = await getMunicipio(params.id);
-        setValue("municipios", data.municipios);
+        setValue("municipio", data.municipios);
       }
     }
     loadMunicipio();
@@ -69,7 +58,7 @@ export default function GestionarMunicipioForm() {
                 className=" border-gray-300 rounded-lg sm:w-96"
                 type="text"
                 id="municipio"
-                {...register("municipios", { required: true })}
+                {...register("municipio", { required: true })}
               />
               {errors.municipios && <span>Introduzca un municipio</span>}
             </div>

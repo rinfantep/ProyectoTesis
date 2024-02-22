@@ -19,6 +19,7 @@ routers.register(r'traslados', views.TrasladosView, 'traslados')
 routers.register(r'enfermedades', views.EnfermedadesView, 'enfermedades')
 routers.register(r'fuentesCalculos', views.FuentesCalculosView, 'fuentesCalculos')
 routers.register(r'notiDiaria', views.NotiDiariaView, 'notiDiaria')
+routers.register(r'seguimientos', views.SeguimientosView, 'seguimientos')
 
 
 
