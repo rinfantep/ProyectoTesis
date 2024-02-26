@@ -74,8 +74,12 @@ export default function Navigation() {
               <span className="ml-4  ">Gestion</span>
             </div>
 
+            <span className="flex justify-center text-base text-black p-2">
+              Modelos
+            </span>
+
             <div
-              className="pl-6 mt-2 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
+              className="pl-6 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
               onClick={() => navigate("/parteDiario")}
             >
               <DocumentIcon className="h-6 w-6 " />
@@ -92,6 +96,18 @@ export default function Navigation() {
 
             <div
               className="pl-6 mt-2 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
+              onClick={() => navigate("/modeloClinica")}
+            >
+              <DocumentIcon className="h-6 w-6 " />
+              <span className="ml-4  ">Modelo clínica</span>
+            </div>
+
+            <span className="flex justify-center text-base text-black p-2">
+              Estadística
+            </span>
+
+            <div
+              className="pl-6 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
               onClick={() => navigate("/datosAnimales")}
             >
               <DocumentIcon className="h-6 w-6 " />

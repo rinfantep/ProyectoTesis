@@ -27,6 +27,7 @@ import GestionarEnfermedades from "./pages/Base de Datos/GestionarEnfermedades";
 
 import ParteDiario from "./pages/Tablas/ParteDiario";
 import Seguimientos from "./pages/Tablas/Seguimientos";
+import ModeloClinica from "./pages/ModeloClinica";
 
 //Form
 import GestionarProvinciaForm from "./pages/Formularios/GestionarProvinciaForm";
@@ -39,6 +40,7 @@ import GestionarEnfermedadForm from "./pages/Formularios/GestionarEnfermedadForm
 
 import ParteDiarioForm from "./pages/Formularios/ParteDiarioForm";
 import SeguimientosForm from "./pages/Formularios/SeguimientosForm";
+import ModeloClinCanForm from "./pages/Formularios/ModeloClinCanForm";
 
 //Icons
 import { SunIcon } from "@heroicons/react/24/solid";
@@ -53,6 +55,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/parteDiario" element={<ParteDiario />} />
           <Route path="/seguimientos" element={<Seguimientos />} />
+          <Route path="/modeloClinica" element={<ModeloClinica />} />
 
           <Route path="/datosAnimales" element={<DatosAnimales />} />
 
@@ -149,6 +152,12 @@ function App() {
 
           <Route path="/seguimientosForm" element={<SeguimientosForm />} />
           <Route path="/seguimientosForm/:id" element={<SeguimientosForm />} />
+
+          <Route path="/modeloClinCanForm" element={<ModeloClinCanForm />} />
+          <Route
+            path="/modeloClinCanForm/:id"
+            element={<ModeloClinCanForm />}
+          />
 
           <Route path="/mapa" element={<Mapa />} />
           <Route path="/tasks" element={<TaskPage />} />

@@ -96,4 +96,11 @@ class SeguimientosSerializer(serializers.ModelSerializer):
         model = Seguimientos
         fields = '__all__'
 
+class LetalidadCaninaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LetalidadCanina
+        fields = '__all__'
+
+
+
 

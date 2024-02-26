@@ -52,6 +52,7 @@ export default function SeguimientosForm() {
         setValue("enfermos", data.enfermos);
         setValue("muertos", data.muertos);
         setValue("sacrificados", data.sacrificados);
+        setValue("recuperados", data.recuperados);
         setValue("observaciones", data.observaciones);
       }
     }
@@ -137,6 +138,19 @@ export default function SeguimientosForm() {
                 {...register("sacrificados", { required: true })}
               />{" "}
               {errors.sacrificados && <span>Introduzca los sacrificados</span>}
+            </div>
+
+            <div className="text-gray-700 grid mr-6">
+              <label htmlFor="recuperados" className="mb-2">
+                Recuperados
+              </label>
+              <input
+                className=" border-gray-300 rounded-lg w-32 sm:w-60"
+                type="number"
+                id="recuperados"
+                {...register("recuperados", { required: true })}
+              />{" "}
+              {errors.recuperados && <span>Introduzca los recuperados</span>}
             </div>
 
             <div className="text-gray-700 grid">

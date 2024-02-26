@@ -44,8 +44,6 @@ class Enfermedades(models.Model):
     def __str__(self):
         return self.enfermedad
     
-
-
 class Propietarios(models.Model):
     propietario = models.CharField( max_length=20, primary_key=True)
     sector = models.ForeignKey('Sectores',on_delete=models.CASCADE)
@@ -82,6 +80,28 @@ class Seguimientos(models.Model):
     sacrificados = models.IntegerField()
     recuperados = models.IntegerField()
     observaciones = models.TextField()
+
+class LetalidadCanina(models.Model):
+    enfermedad = models.ForeignKey("Enfermedades", on_delete=models.CASCADE)
+    nuevosBrotes = models.IntegerField()
+    nuevosEnfermos = models.IntegerField()
+    muertos = models.IntegerField()
+    sacrificados = models.IntegerField()
+    tratados = models.IntegerField()
+    vacunados = models.IntegerField()
+    centroInformante = models.CharField(max_length=50)
+    fecha = models.DateField(auto_now_add=True)
+    sector = models.ForeignKey("Sectores", on_delete=models.CASCADE)
+    municipio = models.ForeignKey("Municipios", on_delete=models.CASCADE)
+    provincia = models.ForeignKey("Provincias", on_delete=models.CASCADE)
+    especie = models.ForeignKey("Especies", on_delete=models.CASCADE)
+
+
+
+
+
+
+
 
 
 

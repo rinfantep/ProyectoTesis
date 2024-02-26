@@ -72,3 +72,6 @@ class SeguimientosView(viewsets.ModelViewSet):
     serializer_class = SeguimientosSerializer
     queryset = Seguimientos.objects.all()
 
+class LetalidadCaninaView(viewsets.ModelViewSet):
+    serializer_class = LetalidadCaninaSerializer
+    queryset = LetalidadCanina.objects.all()
