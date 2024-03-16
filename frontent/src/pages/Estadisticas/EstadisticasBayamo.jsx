@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import CardEstadisticas from "../../components/CardEstadisticas";
 import { getAllAnimales } from "../../api/animales.api";
 import { getAllPropietarios } from "../../api/propietarios.api";
-import { getAllEspecies } from "../../api/especies.api";
-import { getAllNotiDiarias } from "../../api/notiDiarias.api";
+import { getAllClinicaCanina } from "../../api/clinicaCanina.api";
+import { getAllNotiDiarias } from "../../api/notiDiarias.api"
+
+import PieBayamo from '../../Charts/GraficoEnfermedades/PieBayamo'
+
+
 
 //import BarChart from "../../Charts/BarChart";
 
@@ -23,6 +27,7 @@ export default function Bayamo() {
   const [poblacion, setPoblacion] = useState([]);
   const [propietarios, setPropietarios] = useState([]);
   const [especies, setEspecies] = useState([]);
+  const [vacunados, setVacunados] = useState([]);
 
   //Poblacion animal
   useEffect(() => {
@@ -103,18 +108,25 @@ export default function Bayamo() {
 
   //fin Mortalidad
 
-  //Propietarios
+  //Vacunados
   useEffect(() => {
     async function fetchTable() {
-      const { data } = await getAllPropietarios();
-      setPropietarios(data);
+      const { data } = await getAllClinicaCanina();
+      setVacunados(data);
     }
     fetchTable();
   }, []);
 
-  const filtroPropietario = propietarios
+  const filtroVacunados = vacunados
     .filter((person) => person.municipio == "Bayamo")
-    .map((filterPropietario) => filterPropietario.propietarios);
+    .map((filterAnimal) => filterAnimal.vacunados);
+
+  const sumaVacunados = filtroVacunados.reduce((prev, next) => prev + next, 0);
+
+  console.log(filtroVacunados);
+  console.log(sumaVacunados);
+  //Fin Vacunados
+
 
   //Chart
   var data = {
@@ -125,26 +137,31 @@ export default function Bayamo() {
       "Enfermos",
       "Sacrificados",
       "Mortalidad",
-      //"Orange",
+      "Vacunados",
     ],
     datasets: [
       {
-        label: "cant animales",
+        label: "Totales",
         data: [
           sumaAnimales,
           sumaAnimalesMuertos,
           sumaAnimalesEnfermos,
           sumaAnimalesSacrificados,
           mortalidad,
-          filtroPropietario.length,
+          sumaVacunados,
         ],
         backgroundColor: [
-          "rgba(255,99,132,0.2)",
-          "rgba(54,162,235,0.2)",
-          "rgba(255,206,86,0.2)",
-          "rgba(75,192,192,0.2)",
-          "rgba(153,102,255,0.2)",
+          "#ef4444",
+          //"rgba(255,99,132,0.9)",
+          "#0ea5e9",
+          //"rgba(54,162,235,0.9)",
+          "#eab308",
+          //"rgba(255,206,86,0.9)",
+          "#22c55e",
+          //"rgba(75,192,192,0.9)",
+          "rgba(153,102,255,0.9)",
           //"rgba(255,159,64,0.2)",
+          '#065f46',
         ],
         borderColor: [
           "rgba(255,99,132,1)",
@@ -152,7 +169,7 @@ export default function Bayamo() {
           "rgba(255,206,86,1)",
           "rgba(75,192,192,1)",
           "rgba(153,102,255,1)",
-          // "rgba(255,159,64,1)",
+          "#065f46",
         ],
         borderWidth: 1,
       },
@@ -212,14 +229,26 @@ export default function Bayamo() {
               cantidad={parseFloat(mortalidad).toFixed(2)}
               color="bg-purple-500"
             />
-          </div>
-          <div className="w-full h-full flex pl-3  mt-4 mb-4">
-            <Bar
-              data={data}
-              height={400}
-              options={options}
-              className="pr-8 pl-8"
+
+            <CardEstadisticas
+              nombre="Vacunados"
+              cantidad={sumaVacunados}
+              color="bg-emerald-800"
             />
+          </div>
+          <div className="flex flex-row flex-wrap mt-4">
+            <div className="basis-1/2">
+              <Bar
+                data={data}
+                height={400}
+                
+                options={options}
+                className="pr-8 pl-8"
+              />
+            </div>
+            <div className="basis-1/2">
+              <PieBayamo/>
+            </div>
           </div>
         </div>
       </div>

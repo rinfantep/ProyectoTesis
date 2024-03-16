@@ -9,7 +9,7 @@ import {
 
 import Table from "react-bootstrap/Table";
 
-import NavClinica from "../../components/Nav/NavClinica";
+
 import { getAllClinicaCanina } from "../../api/clinicaCanina.api";
 
 export function ModeloClinicaCanino() {
@@ -125,7 +125,7 @@ export function ModeloClinicaCanino() {
 
   return (
     <>
-      <NavClinica />
+      
       <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1 ml-4 mr-4">
         <div className="flex justify-between items-center">
           <strong className="text-gray-700 from-neutral-900 text-xs md:text-lg">
