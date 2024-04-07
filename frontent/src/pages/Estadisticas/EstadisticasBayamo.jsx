@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import CardEstadisticas from "../../components/CardEstadisticas";
-import { getAllAnimales } from "../../api/animales.api";
-import { getAllPropietarios } from "../../api/propietarios.api";
+
 import { getAllClinicaCanina } from "../../api/clinicaCanina.api";
-import { getAllNotiDiarias } from "../../api/notiDiarias.api"
+import { getAllNotiDiarias } from "../../api/notiDiarias.api";
 
-import PieBayamo from '../../Charts/GraficoEnfermedades/PieBayamo'
+import PieBayamo from "../../Charts/GraficoEnfermedades/PieBayamo";
 
+import PrevalenciaBayamo from "../../Charts/Prevalencia/PrevalenciaBayamo";
 
+import { useForm } from "react-hook-form";
 
 //import BarChart from "../../Charts/BarChart";
 
@@ -27,7 +28,8 @@ export default function Bayamo() {
   const [poblacion, setPoblacion] = useState([]);
   const [propietarios, setPropietarios] = useState([]);
   const [especies, setEspecies] = useState([]);
-  const [vacunados, setVacunados] = useState([]);
+  const [clinica, setClinica] = useState([]);
+  const [fecha, setFecha] = useState([]);
 
   //Poblacion animal
   useEffect(() => {
@@ -46,13 +48,6 @@ export default function Bayamo() {
   //fin poblacion animal
 
   //Animales muertos
-  useEffect(() => {
-    async function fetchTable() {
-      const { data } = await getAllNotiDiarias();
-      setPoblacion(data);
-    }
-    fetchTable();
-  }, []);
 
   const filtroAnimalesMuertos = poblacion
     .filter((person) => person.municipio == "Bayamo")
@@ -65,13 +60,6 @@ export default function Bayamo() {
   //fin Animales muertos
 
   //Animales enfermos
-  useEffect(() => {
-    async function fetchTable() {
-      const { data } = await getAllNotiDiarias();
-      setPoblacion(data);
-    }
-    fetchTable();
-  }, []);
 
   const filtroAnimalesEnfermos = poblacion
     .filter((person) => person.municipio == "Bayamo")
@@ -84,13 +72,6 @@ export default function Bayamo() {
   //fin Animales enfermos
 
   //Animales sacrificios
-  useEffect(() => {
-    async function fetchTable() {
-      const { data } = await getAllNotiDiarias();
-      setPoblacion(data);
-    }
-    fetchTable();
-  }, []);
 
   const filtroAnimalesSacrificados = poblacion
     .filter((person) => person.municipio == "Bayamo")
@@ -112,21 +93,47 @@ export default function Bayamo() {
   useEffect(() => {
     async function fetchTable() {
       const { data } = await getAllClinicaCanina();
-      setVacunados(data);
+      setClinica(data);
     }
     fetchTable();
   }, []);
 
-  const filtroVacunados = vacunados
+  const filtroVacunados = clinica
     .filter((person) => person.municipio == "Bayamo")
     .map((filterAnimal) => filterAnimal.vacunados);
 
   const sumaVacunados = filtroVacunados.reduce((prev, next) => prev + next, 0);
 
-  console.log(filtroVacunados);
-  console.log(sumaVacunados);
   //Fin Vacunados
 
+  //Prevalencia
+
+  const { handleSubmit } = useForm();
+
+  const fecha1 = clinica.map((cli, i) => (
+    <option key={i} value={cli.fecha}>
+      {cli.fecha}
+    </option>
+  ));
+
+  console.log(fecha1[1]);
+
+  const fecha2 = clinica.map((cli, i) => (
+    <option key={i} value={cli.fecha}>
+      {cli.fecha}
+    </option>
+  ));
+
+  const onSubmit = handleSubmit((e) => {
+    e.preventDefault;
+
+    const filtroFecha = clinica
+      .filter((person) => person.fecha == fecha1)
+      .map((filterAnimal) => filterAnimal.vacunados);
+  });
+
+  //const sumaFecha = filtroVacunados.reduce((prev, next) => prev + next, 0);
+  //Fin Prevalencia
 
   //Chart
   var data = {
@@ -161,7 +168,7 @@ export default function Bayamo() {
           //"rgba(75,192,192,0.9)",
           "rgba(153,102,255,0.9)",
           //"rgba(255,159,64,0.2)",
-          '#065f46',
+          "#065f46",
         ],
         borderColor: [
           "rgba(255,99,132,1)",
@@ -237,18 +244,59 @@ export default function Bayamo() {
             />
           </div>
           <div className="flex flex-row flex-wrap mt-4">
-            <div className="basis-1/2">
+            <h5 className="basis-1/2 pl-4 pb-2 pt-2">Totales</h5>
+            <h5 className="basis-1/2 pl-4 pb-2 pt-2">Letalidad</h5>
+          </div>
+          <div className="flex flex-row flex-wrap">
+            <div className="basis-1/2 p-4">
               <Bar
                 data={data}
                 height={400}
-                
                 options={options}
                 className="pr-8 pl-8"
               />
             </div>
-            <div className="basis-1/2">
-              <PieBayamo/>
+            <div className="basis-1/2 p-4">
+              <PieBayamo />
             </div>
+          </div>
+          <div className="mt-4 ml-4">
+            <h5>Prevalencia</h5>
+          </div>
+          <form onSubmit={onSubmit}>
+            <div className="flex flex-row flex-wrap ml-4">
+              <div className="basis-1/3 mr-4 flex items-center">
+                <h6 className="mr-4">Desde</h6>
+                <select
+                  className="form-control border-gray-300 rounded-lg sm:w-96"
+                  id="provincia"
+                >
+                  <option value="">Fecha 1</option>
+                  {fecha1}
+                </select>
+              </div>
+
+              <div className="basis-1/3 flex ml-4 items-center">
+                <h6 className="mr-4">Hasta</h6>
+                <select
+                  className="form-control border-gray-300 rounded-lg sm:w-96"
+                  id="provincia"
+                >
+                  <option value="">Fecha 2</option>
+                  {fecha2}
+                </select>
+              </div>
+
+              <div>
+                <button className="bg-sky-600 hover:bg-sky-700 text-white w-20 rounded-sm hover:shadow-black h-7 ml-8 items-center">
+                  Calcular
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div className="bg-white mt-4 mb-4">
+            <PrevalenciaBayamo />
           </div>
         </div>
       </div>
