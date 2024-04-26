@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CardEstadisticas from "../../components/CardEstadisticas";
 import { getAllClinicaCanina } from "../../api/clinicaCanina.api";
-import { getAllNotiDiarias } from "../../api/notiDiarias.api"
+import { getAllNotiDiarias } from "../../api/notiDiarias.api";
 
-import PieBayamo from '../GraficoEnfermedades/PieBayamo'
-
-
+import PieBayamo from "../GraficoEnfermedades/PieBayamo";
 
 import {
   Chart as ChartJS,
@@ -121,7 +119,6 @@ export default function PrevalenciaBayamo() {
 
   //Fin Vacunados
 
-
   //Chart
   var data = {
     label: "Cantidad",
@@ -155,7 +152,7 @@ export default function PrevalenciaBayamo() {
           //"rgba(75,192,192,0.9)",
           "rgba(153,102,255,0.9)",
           //"rgba(255,159,64,0.2)",
-          '#065f46',
+          "#065f46",
         ],
         borderColor: [
           "rgba(255,99,132,1)",
@@ -186,19 +183,7 @@ export default function PrevalenciaBayamo() {
 
   return (
     <>
-     
-
-                
-              
-      <Bar
-        data={data}
-        height={400}
-        
-        options={options}
-        className="pr-8 pl-8"
-      />
-            
-          
+      <Bar data={data} height={400} options={options} className="pr-8 pl-8" />
     </>
   );
 }

@@ -10,6 +10,8 @@ import PrevalenciaBayamo from "../../Charts/Prevalencia/PrevalenciaBayamo";
 
 import { useForm } from "react-hook-form";
 
+import DatepickerPre from "../../components/DatePicker";
+
 //import BarChart from "../../Charts/BarChart";
 
 import {
@@ -263,37 +265,9 @@ export default function Bayamo() {
           <div className="mt-4 ml-4">
             <h5>Prevalencia</h5>
           </div>
-          <form onSubmit={onSubmit}>
-            <div className="flex flex-row flex-wrap ml-4">
-              <div className="basis-1/3 mr-4 flex items-center">
-                <h6 className="mr-4">Desde</h6>
-                <select
-                  className="form-control border-gray-300 rounded-lg sm:w-96"
-                  id="provincia"
-                >
-                  <option value="">Fecha 1</option>
-                  {fecha1}
-                </select>
-              </div>
-
-              <div className="basis-1/3 flex ml-4 items-center">
-                <h6 className="mr-4">Hasta</h6>
-                <select
-                  className="form-control border-gray-300 rounded-lg sm:w-96"
-                  id="provincia"
-                >
-                  <option value="">Fecha 2</option>
-                  {fecha2}
-                </select>
-              </div>
-
-              <div>
-                <button className="bg-sky-600 hover:bg-sky-700 text-white w-20 rounded-sm hover:shadow-black h-7 ml-8 items-center">
-                  Calcular
-                </button>
-              </div>
-            </div>
-          </form>
+          <div>
+            <DatepickerPre />
+          </div>
 
           <div className="bg-white mt-4 mb-4">
             <PrevalenciaBayamo />

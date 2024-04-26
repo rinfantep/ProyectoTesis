@@ -15,10 +15,6 @@ class ProvinciasView(viewsets.ModelViewSet):
     serializer_class = ProvinciasSerializer
     queryset = Provincias.objects.all()
 
-class MapasView(viewsets.ModelViewSet):
-    serializer_class = MapasSerializer
-    queryset = Mapas.objects.all()
-
 class PropietariosView(viewsets.ModelViewSet):
     serializer_class = PropietariosSerializer
     queryset = Propietarios.objects.all()
@@ -35,34 +31,9 @@ class EspeciesView(viewsets.ModelViewSet):
     serializer_class = EspeciesSerializer
     queryset = Especies.objects.all()
 
-class CuadrantesView(viewsets.ModelViewSet):
-    serializer_class = CuadrantesSerializer
-    queryset = Cuadrantes.objects.all()
-
-class AreasView(viewsets.ModelViewSet):
-    serializer_class = AreasSerializer
-    queryset = Areas.objects.all()
-    
-class SubareasView(viewsets.ModelViewSet):
-    serializer_class = SubareasSerializer
-    queryset = Subareas.objects.all()
-
-
-class DensidadesView(viewsets.ModelViewSet):
-    serializer_class = DensidadesSerializer
-    queryset = Densidades.objects.all()
-
-class TrasladosView(viewsets.ModelViewSet):
-    serializer_class = TrasladosSerializer
-    queryset = Traslados.objects.all()
-
 class EnfermedadesView(viewsets.ModelViewSet):
     serializer_class = EnfermedadesSerializer
     queryset = Enfermedades.objects.all()
-
-class FuentesCalculosView(viewsets.ModelViewSet):
-    serializer_class = FuentesCalculosSerializer
-    queryset = FuentesCalculos.objects.all()
 
 class NotiDiariaView(viewsets.ModelViewSet):
     serializer_class = NotiDiariaSerializer
@@ -75,3 +46,7 @@ class SeguimientosView(viewsets.ModelViewSet):
 class LetalidadCaninaView(viewsets.ModelViewSet):
     serializer_class = LetalidadCaninaSerializer
     queryset = LetalidadCanina.objects.all()
+
+class TrasladoView(viewsets.ModelViewSet):
+    serializer_class = TrasladoSerializer
+    queryset = Traslado.objects.all()

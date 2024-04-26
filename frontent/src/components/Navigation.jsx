@@ -102,6 +102,14 @@ export default function Navigation() {
               <span className="ml-4  ">Modelo clínica</span>
             </div>
 
+            <div
+              className="pl-6 mt-2 flex hover:bg-sky-600 text-neutral-700  py-2 transition-colors hover:text-neutral-100  items-center justify-start cursor-pointer"
+              onClick={() => navigate("/traslado")}
+            >
+              <DocumentIcon className="h-6 w-6 " />
+              <span className="ml-4  ">Traslado</span>
+            </div>
+
             <span className="flex justify-center text-base text-black p-2">
               Estadística
             </span>

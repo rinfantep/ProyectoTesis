@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'djoser',
     'coreapi',
     'tasks',
-    'users',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -129,8 +130,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    ]
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    #'DEFAULT_PERMISSION_CLASSES': 'rest_framework.permissions.IsAuthenticated',
+    #'DEFAULT_AUTHENTICATION_CLASSES':'rest_framework.authentication.SessionAuthentication',
+    
 }       
+
+CORS_ALLOW_CREDENTIALS = True
+
+#AUTH_USER_MODEL = 'user_api.AppUser'
