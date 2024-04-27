@@ -53,24 +53,30 @@ class Propietarios(models.Model):
     def __str__(self):
         return self.propietario
     
+    
+class Unidad(models.Model):
+    nombre = models.CharField(max_length = 40)
+    provincia_uni = models.ForeignKey("Provincias",on_delete=models.CASCADE,related_name ='provincia_uni')
+    municipio_uni = models.ForeignKey("Municipios",on_delete=models.CASCADE,related_name ='municipio_uni')
+   
 
 class NotiDiaria(models.Model):
-    fecha = models.DateField(auto_now=True)
-    No_orden = models.IntegerField()
+    no_orden = models.IntegerField()
     municipio = models.ForeignKey("Municipios", on_delete=models.CASCADE, db_column='municipio')
-    unidad = models.CharField(max_length=50)
+    unidad = models.ForeignKey("Unidad", on_delete=models.CASCADE)
     propietario = models.ForeignKey("Propietarios", on_delete=models.CASCADE, db_column='propietario')
-    cuadrante = models.IntegerField()
     codigo_entidad = models.IntegerField()
     codigo_especialista = models.IntegerField()
-    poblacion = models.IntegerField()
-    enfermos = models.IntegerField()
-    muertos = models.IntegerField()
-    sac = models.IntegerField()
-    fecha_envio = models.DateField(auto_now=False, auto_now_add=False)
+    poblacion = models.IntegerField(null=True, blank=True)
+    enfermos = models.IntegerField(null=True, blank=True)
+    muertos = models.IntegerField(null=True, blank=True)
+    sacrificados = models.IntegerField(null=True, blank=True)
     fecha_confeccion = models.DateField(auto_now=False, auto_now_add=False)
-    fecha_cierre = models.DateField(auto_now=False, auto_now_add=False)
-    parte = models.TextField()
+    fecha_confirmacion = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    fecha_cierre = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
+    latitud = models.FloatField()
+    longitud = models.FloatField()
 
 class Seguimientos(models.Model):
     provincia = models.ForeignKey("Provincias", on_delete=models.CASCADE)

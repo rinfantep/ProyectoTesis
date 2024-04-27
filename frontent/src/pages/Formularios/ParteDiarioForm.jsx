@@ -60,21 +60,22 @@ export default function MunicipioForm() {
     async function loadNoti() {
       if (params.id) {
         const { data } = await getNotiDiarias(params.id);
-        setValue("No_orden", data.No_orden);
+        setValue("no_orden", data.no_orden);
         setValue("unidad", data.unidad);
-        setValue("cuadrante", data.cuadrante);
         setValue("codigo_entidad", data.codigo_entidad);
         setValue("codigo_especialista", data.codigo_especialista);
         setValue("poblacion", data.poblacion);
         setValue("enfermos", data.enfermos);
         setValue("muertos", data.muertos);
-        setValue("sac", data.sac);
-        setValue("fecha_envio", data.fecha_envio);
+        setValue("sacrificados", data.sacrificados);
         setValue("fecha_confeccion", data.fecha_confeccion);
+        setValue("fecha_confirmacion", data.fecha_confirmacion);
         setValue("fecha_cierre", data.fecha_cierre);
-        setValue("parte", data.parte);
+        setValue("descripcion", data.parte);
         setValue("municipio", data.municipio);
         setValue("propietario", data.propietario);
+        setValue("propietario", data.latitud);
+        setValue("propietario", data.longitud);
       }
     }
     loadNoti();
@@ -97,8 +98,8 @@ export default function MunicipioForm() {
               <input
                 className=" border-gray-300 rounded-lg w-32 sm:w-60"
                 type="number"
-                id="No_orden"
-                {...register("No_orden", { required: true })}
+                id="no_orden"
+                {...register("no_orden", { required: true })}
               />
               {errors.No_orden && <span>Introduzca un numero de orden</span>}
             </div>
