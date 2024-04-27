@@ -44,6 +44,11 @@ class EnfermedadesSerializer(serializers.ModelSerializer):
         #fields = ('id','codigo', 'nombre')
         fields = '__all__'
 
+class UnidadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Unidad
+        fields = '__all__'
+
 class NotiDiariaSerializer(serializers.ModelSerializer):
     class Meta:
         model = NotiDiaria

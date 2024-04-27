@@ -55,7 +55,7 @@ class Propietarios(models.Model):
     
     
 class Unidad(models.Model):
-    nombre = models.CharField(max_length = 40)
+    nombre = models.CharField(max_length = 250)
     provincia_uni = models.ForeignKey("Provincias",on_delete=models.CASCADE,related_name ='provincia_uni')
     municipio_uni = models.ForeignKey("Municipios",on_delete=models.CASCADE,related_name ='municipio_uni')
    

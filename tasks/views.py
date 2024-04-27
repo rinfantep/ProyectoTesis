@@ -35,6 +35,10 @@ class EnfermedadesView(viewsets.ModelViewSet):
     serializer_class = EnfermedadesSerializer
     queryset = Enfermedades.objects.all()
 
+class UnidadView(viewsets.ModelViewSet):
+    serializer_class = UnidadSerializer
+    queryset = Unidad.objects.all()
+
 class NotiDiariaView(viewsets.ModelViewSet):
     serializer_class = NotiDiariaSerializer
     queryset = NotiDiaria.objects.all()
