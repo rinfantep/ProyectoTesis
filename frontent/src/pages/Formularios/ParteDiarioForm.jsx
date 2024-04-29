@@ -11,6 +11,7 @@ import {
 import Navigation from "../../components/Navigation";
 import { getAllMunicipio } from "../../api/municipio.api";
 import { getAllPropietarios } from "../../api/propietarios.api";
+import { getAllUnidad } from "../../api/unidad.api";
 
 export default function MunicipioForm() {
   //select Municipio
@@ -36,6 +37,18 @@ export default function MunicipioForm() {
     fetchTable();
   }, []);
   //fin select propietario
+
+  //select Unidad
+  const [unidad, setUnidad] = useState([]);
+
+  useEffect(() => {
+    async function fetchTable() {
+      const { data } = await getAllUnidad();
+      setUnidad(data);
+    }
+    fetchTable();
+  }, []);
+  //fin select unidad
 
   const {
     register,
@@ -104,16 +117,22 @@ export default function MunicipioForm() {
               {errors.No_orden && <span>Introduzca un numero de orden</span>}
             </div>
 
-            <div className="text-gray-700 grid">
+            <div className="text-gray-700 grid sm:mr-10">
               <label htmlFor="unidad" className="mb-2">
                 Unidad
               </label>
-              <input
-                className="border-gray-300 rounded-lg w-32 sm:w-60"
-                type="text"
+              <select
+                className="form-control border-gray-300 rounded-lg sm:w-60"
                 id="unidad"
                 {...register("unidad", { required: true })}
-              />
+              >
+                <option value="">-------</option>
+                {unidad.map((prov, i) => (
+                  <option key={i} value={prov.unidad}>
+                    {prov.id}
+                  </option>
+                ))}
+              </select>
               {errors.unidad && <span>Introduzca una unidad</span>}
             </div>
 

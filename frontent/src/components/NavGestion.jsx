@@ -58,10 +58,10 @@ export default function NavGestion() {
           </h3>
 
           <h3
-            onClick={() => navigate("/gestionarAnimales")}
+            onClick={() => navigate("/gestionarUnidad")}
             className="ml-5 font-sans text-neutral-100 hover:text-neutral-400 cursor-pointer text-xs md:text-lg "
           >
-            Animales
+            Unidad
           </h3>
         </div>
       </nav>

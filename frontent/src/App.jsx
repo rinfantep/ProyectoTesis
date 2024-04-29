@@ -4,8 +4,6 @@ import TaskForm from "./components/TaskForm";
 import Tabla from "./components/Tabla";
 import TablaComp from "./components/TablaComponent";
 
-import DatosAnimales from "./pages/Provincia/DatosAnimales";
-
 //Estadisticas
 import Estadisticas from "./pages/Estadistica";
 import EstadisticasBayamo from "./pages/Estadisticas/EstadisticasBayamo";
@@ -24,6 +22,7 @@ import GestionarTipoSector from "./pages/Base de Datos/GestionarTipoSector";
 import GestionarPropietario from "./pages/Base de Datos/GestionarPropietario";
 import GestionarEspecie from "./pages/Base de Datos/GestionarEspecie";
 import GestionarEnfermedades from "./pages/Base de Datos/GestionarEnfermedades";
+import GestionarUnidad from "./pages/Base de Datos/GestionarUnidad";
 
 import ParteDiario from "./pages/Tablas/ParteDiario";
 import Seguimientos from "./pages/Tablas/Seguimientos";
@@ -38,6 +37,7 @@ import GestionarSectorForm from "./pages/Formularios/GestionarSectorForm";
 import GestionarTipoSectorForm from "./pages/Formularios/GestionarTipoSectorForm";
 import GestionarEspecieForm from "./pages/Formularios/GestionarEspecieForm";
 import GestionarEnfermedadForm from "./pages/Formularios/GestionarEnfermedadForm";
+import GestionarUnidadForm from "./pages/Formularios/GestionarUnidadForm";
 
 import ParteDiarioForm from "./pages/Formularios/ParteDiarioForm";
 import SeguimientosForm from "./pages/Formularios/SeguimientosForm";
@@ -59,8 +59,6 @@ function App() {
           <Route path="/seguimientos" element={<Seguimientos />} />
           <Route path="/modeloClinica" element={<ModeloClinica />} />
           <Route path="/traslado" element={<Traslado />} />
-
-          <Route path="/datosAnimales" element={<DatosAnimales />} />
 
           <Route path="/estadisticas" element={<Estadisticas />} />
           <Route path="/estadisticasBayamo" element={<EstadisticasBayamo />} />
@@ -86,6 +84,8 @@ function App() {
             path="/gestionarEnfermedades"
             element={<GestionarEnfermedades />}
           />
+
+          <Route path="/gestionarUnidad" element={<GestionarUnidad />} />
 
           <Route
             path="/gestionarProvinciaForm"
@@ -148,6 +148,15 @@ function App() {
           <Route
             path="/gestionarEnfermedadForm/:id"
             element={<GestionarEnfermedadForm />}
+          />
+
+          <Route
+            path="/gestionarUnidadForm"
+            element={<GestionarUnidadForm />}
+          />
+          <Route
+            path="/gestionarUnidadForm/:id"
+            element={<GestionarUnidadForm />}
           />
 
           <Route path="/parteDiarioForm" element={<ParteDiarioForm />} />

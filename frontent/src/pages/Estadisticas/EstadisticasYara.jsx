@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardEstadisticas from "../../components/CardEstadisticas";
-import { getAllAnimales } from "../../api/animales.api";
+
 import { getAllPropietarios } from "../../api/propietarios.api";
 import { getAllEspecies } from "../../api/especies.api";
 import { getAllNotiDiarias } from "../../api/notiDiarias.api";
